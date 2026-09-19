@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>浊堤·嘉靖四十年</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :root {
+    /* 微信读书淡绿色护眼模式 */
+    --paper: #eef4ea;
+    --paper-soft: #e6efdf;
+    --ink: #334133;
+    --ink-soft: #4a5a48;
+    --accent: #3f6b44;
+    --rule: rgba(80, 110, 80, 0.22);
+    --seal: #7a3b2a;
+  }
+
+  body {
+    min-height: 100vh;
+    font-family: "楷体", "STKaiti", "SimKai", "Songti SC", "SimSun", serif;
+    color: var(--ink);
+    line-height: 2;
+    background: #e3ede0;
+    padding: 36px 16px 60px;
+  }
+
+  /* 楔子页 */
+  .prologue {
+    max-width: 900px;
+    margin: 0 auto;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(160, 190, 140, 0.25), transparent 60%),
+      linear-gradient(180deg, #e3ede0 0%, #d7e4cf 100%);
+  }
+
+  .prologue-inner {
+    padding: 100px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .prologue-title {
+    font-size: 84px;
+    font-weight: bold;
+    color: #2f4a32;
+    letter-spacing: 18px;
+    font-family: "STKaiti", "SimKai", "楷体", serif;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.4);
+  }
+
+  .prologue-subtitle {
+    font-size: 20px;
+    color: #4a6b4a;
+    letter-spacing: 6px;
+    margin-bottom: 32px;
+  }
+
+  .prologue-quote {
+    font-size: 17px;
+    color: #4a6b4a;
+    font-style: italic;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+  }
+
+  .enter-btn {
+    background: linear-gradient(180deg, #f4f8ee, #e2efd9);
+    border: 1.5px solid #6b8e6a;
+    color: #2f4a32;
+    padding: 14px 44px;
+    font-family: inherit;
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 8px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+  }
+
+  .enter-btn:hover {
+    background: linear-gradient(180deg, #f8fbf4, #e7f2de);
+    transform: translateY(-1px);
+  }
+
+  /* 正文区域默认隐藏 */
+  .main-content {
+    display: none;
+  }
+
+  /* 淡绿色护眼羊皮纸容器 */
+  .parchment {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 50px 56px 40px;
+    background-color: var(--paper);
+    background-image:
+      radial-gradient(ellipse at 20% 15%, rgba(255, 255, 255, 0.45), transparent 55%),
+      radial-gradient(ellipse at 80% 85%, rgba(160, 190, 140, 0.12), transparent 60%),
+      repeating-linear-gradient(110deg,
+        rgba(120, 150, 110, 0.04) 0 1px,
+        transparent 1px 8px);
+    border-radius: 4px;
+    box-shadow:
+      0 0 0 1px rgba(80, 110, 80, 0.18),
+      0 14px 40px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+
+  /* 细微纸张折痕 */
+  .parchment::before,
+  .parchment::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: linear-gradient(to right,
+      transparent,
+      rgba(80, 110, 80, 0.08),
+      transparent);
+    filter: blur(1px);
+  }
+  .parchment::before { top: 0; }
+  .parchment::after { bottom: 0; }
+
+  h1 {
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    color: #2f4a32;
+    letter-spacing: 12px;
+    margin-bottom: 8px;
+    font-family: "STKaiti", "SimKai", "楷体", serif;
+  }
+
+  .subtitle {
+    text-align: center;
+    font-size: 16px;
+    color: var(--ink-soft);
+    letter-spacing: 3px;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--accent);
+    margin: 28px 0 14px;
+    letter-spacing: 3px;
+    padding-left: 12px;
+    border-left: 4px solid #6b8e6a;
+  }
+
+  /* 场景说明居中 */
+  .scene {
+    text-align: center;
+    font-size: 15px;
+    color: var(--ink-soft);
+    font-style: italic;
+    margin-bottom: 14px;
+    letter-spacing: 1px;
+    text-indent: 0;
+  }
+
+  /* 正文首行缩进2字符 */
+  p {
+    margin-bottom: 12px;
+    text-indent: 2em;
+    font-size: 17px;
+    color: var(--ink);
+  }
+
+  strong {
+    font-weight: bold;
+    color: var(--ink);
+  }
+
+  /* 对话统一首行缩进2字符 */
+  .dialog {
+    margin-bottom: 10px;
+    text-indent: 2em;
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .dialog::before {
+    content: "「";
+    color: var(--seal);
+    font-weight: bold;
+  }
+
+  .dialog::after {
+    content: "」";
+    color: var(--seal);
+    font-weight: bold;
+  }
+
+  .choices {
+    margin-top: 28px;
+    padding: 22px 20px 18px;
+    border-top: 1px dashed var(--rule);
+    background: rgba(255, 255, 255, 0.35);
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .choice-label {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--accent);
+    letter-spacing: 2px;
+    margin-bottom: 4px;
+    text-indent: 0;
+  }
+
+  .choice-btn {
+    background: linear-gradient(180deg, #f4f8ee 0%, #e2efd9 100%);
+    border: 1px solid #6b8e6a;
+    color: #2f4a32;
+    padding: 12px 16px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 3px;
+    text-align: left;
+    transition: all 0.2s ease;
+  }
+
+  .choice-btn:hover {
+    background: linear-gradient(180deg, #f8fbf4 0%, #e7f2de 100%);
+    transform: translateX(3px);
+  }
+
+  .ending {
+    margin-top: 32px;
+    padding-top: 22px;
+    border-top: 2px solid #6b8e6a;
+  }
+
+  .ending-title {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--accent);
+    letter-spacing: 3px;
+    margin-bottom: 16px;
+    text-indent: 0;
+  }
+
+  .ending-note {
+    text-align: right;
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-top: 20px;
+    font-style: italic;
+    text-indent: 0;
+  }
+
+  .back-btn {
+    margin-top: 28px;
+    text-align: center;
+  }
+
+  .back-btn button {
+    background: none;
+    border: 1px solid #6b8e6a;
+    color: var(--accent);
+    padding: 8px 20px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+
+  .back-btn button:hover {
+    background: rgba(107, 142, 106, 0.12);
+  }
+
+  .node { display: none; }
+  .node.active { display: block; }
+
+  @media (max-width: 720px) {
+    body { padding: 20px 10px 50px; }
+    .parchment { padding: 32px 20px 28px; }
+    h1 { font-size: 28px; letter-spacing: 6px; }
+    .prologue-title { font-size: 48px; letter-spacing: 10px; }
+    p { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 楔子页 -->
+<div class="prologue" id="prologue">
+  <div class="prologue-inner">
+    <div class="prologue-title">浊堤</div>
+    <div class="prologue-subtitle">嘉靖四十年 · 浙江</div>
+    <div class="prologue-quote">雨一直在下，像要把这一年的账，都冲进江里。</div>
+    <button class="enter-btn" onclick="enterStory()">入 卷</button>
+  </div>
+</div>
+
+<!-- 正文 -->
+<div class="main-content" id="mainContent">
+  <div class="parchment">
+
+    <h1>浊堤</h1>
+    <div class="subtitle">嘉靖四十年 · 浙江</div>
+
+    <!-- 序章 -->
+    <div id="node0" class="node active">
+      <div class="scene">场景：嘉靖四十年，六月，浙江某县县衙户房。夜雨。</div>
+
+      <p>檐角垂着雨线，砸在青石板上。窗纸浸了潮气，发暗。烛火晃着，把<strong>沈默</strong>的影子投在满墙的<strong>鱼鳞册</strong>、税粮清册上，斜斜很长。</p>
+
+      <p>他指尖按着年初的<strong>堤工报销册</strong>，指腹在「坚石三百方，夯土千担」一行慢慢蹭过。桌角堆七封堤岸告急文书，封皮起了毛边；旁边摞着十七封催缴税粮的公文，朱印鲜红——朝廷税额固定，分毫不能少。</p>
+
+      <p>门“吱呀”撞开，差役浑身淌水闯进来。</p>
+      <p class="dialog">沈书办，北段大堤……堤身往外渗水，底下的泥都是松的！守堤的人说，再下一夜，铁定要溃！下游那十几片稻田，全在洼处，尽数要泡烂！</p>
+
+      <p>沈默的手猛地顿住，墨点落在“银两足额”四个字上，洇开一团黑。</p>
+      <p class="dialog">年初才拨的修堤银，怎么会松？</p>
+      <p>差役张了张嘴，头低下去。</p>
+      <p class="dialog">小的不知。只听说……大半被挪去别处了。王典史在前堂立等，叫您即刻过去。</p>
+
+      <p>雨更大了。穿过县衙甬道，远处江水的轰鸣像闷雷。他知道，下游那几千亩稻田，是全县百姓的口粮田，也是今年税粮的根基。田一淹，粮就绝，税就没着落，百姓也没了活路。</p>
+
+      <p>前堂烛火通明。<strong>王典史</strong>端坐，茶盏盖掀开一半，热气模糊了脸。堂下站着<strong>张乡绅</strong>，青绸直裰，布鞋干净，半点泥水都没有——他家田产最多，还开着粮铺、丝行。</p>
+
+      <p>见沈默进来，王典史把茶盏往桌上一放。</p>
+      <p class="dialog">沈默，你掌户房的账，眼下情形你也清楚。水要涨，田要淹，朝廷的税粮，一分一厘都不能少。你回去照册核田，照常催缴。别的话，不要多说，别的事，不要多管。</p>
+
+      <p>沈默抬眼。</p>
+      <p class="dialog">大人，稻田若淹了，百姓颗粒无收，这税粮……从哪里出？</p>
+      <p>王典史看着他，眼神沉得像外面的江水。</p>
+      <p class="dialog">从哪里出，是你要想的事？我只问你，账能不能做平。账做不平，上面追责下来，你我这顶帽子，都戴不住。</p>
+
+      <p>一旁的张乡绅缓缓开口，声音温厚。</p>
+      <p class="dialog">沈书办年轻，心善，见不得百姓受苦，也是人之常情。只是官事有规矩。真要是难办，乡中还有些存粮，先拿出来周转灾民，也不是不行。日后账目上、田亩过割上，书办多通融通融，也就是了。</p>
+
+      <p>话音刚落，堂外一阵嘈杂。老农<strong>老周</strong>浑身是泥，被衙役拦在阶下。</p>
+      <p class="dialog">沈书办！求您开开恩！我家五亩稻田，全在下游，这堤一溃，全家口粮就没了！税粮实在是缴不上啊！</p>
+
+      <p>王典史皱了皱眉，没说话，只看向沈默。</p>
+      <p>烛火跳了一下。</p>
+      <p>外面的雨，还在下。</p>
+
+      <div class="choices">
+        <div class="choice-label">【你的选择】</div>
+        <button class="choice-btn" onclick="goTo('node1-1')">1. 回房造册，按原鱼鳞册照常核税催缴</button>
+        <button class="choice-btn" onclick="goTo('node2-1')">2. 面禀上官，详述田淹粮绝，申请暂缓征缴</button>
+        <button class="choice-btn" onclick="goTo('node3-1')">3. 先不下发，暗核灾田户数，压一压再说</button>
+      </div>
+    </div>
+
+    <!-- 第二层 -->
+    <div id="node1-1" class="node">
+      <h2>第一层 · 按册行事</h2>
+      <div class="scene">场景：户房。夜雨。</div>
+
+      <p>沈默躬身应了声“卑职遵命”。</p>
+      <p>回到户房，他把堤工告急的文书推到一边，铺开崭新的税粮清册，拿起笔。笔尖蘸了墨，悬在纸上片刻，终究落了下去。一户一户，一亩一亩，田亩数、税粮额，数字和原鱼鳞册上差不了几分。</p>
+
+      <p>同僚在旁边叹了口气。</p>
+      <p class="dialog">沈书办，你也别太往心里去。历朝历代，哪有灾年不征税的道理？咱们做小吏的，守好自己的本分，比什么都强。</p>
+
+      <p>沈默没说话，笔尖顿了顿，又往下写。</p>
+      <p>窗外的雨好像更大了。远处隐隐传来一声闷响，像是什么东西塌了。</p>
+      <p>他手一抖，墨滴落在田亩界线上。</p>
+
+      <div class="choices">
+        <div class="choice-label">【接下来怎么办？】</div>
+        <button class="choice-btn" onclick="goTo('node1-2')">1. 咬紧牙关，全数下发，一概不减免</button>
+        <button class="choice-btn" onclick="goTo('node2-2')">2. 挑几户绝收的，私下改几笔尾数，先缓一缓</button>
+        <button class="choice-btn" onclick="goTo('node3-2')">3. 去寻张乡绅，托他先开仓放些粮平乱</button>
+      </div>
+    </div>
+
+    <div id="node2-1" class="node">
+      <h2>第一层 · 报请缓征</h2>
+      <div class="scene">场景：签押房。夜雨。</div>
+
+      <p>沈默站在堂下，将堤岸渗水、稻田将淹、百姓难完税的情形，一一说与王典史，恳请暂缓催征，开仓赈灾。</p>
+      <p>王典史听着，手指慢慢敲着桌面。</p>
+      <p class="dialog">说完了？沈默，你在户房也有些年了，怎么还不懂事？朝廷要的是税粮，不是灾情。你报上去，上面只会说咱们办事不力，不会说咱们体恤百姓。</p>
+
+      <p>沈默还想再说，王典史打断他。</p>
+      <p class="dialog">溃了再说溃了的话。现在税令下去，还能收上来几分。等真溃了，更是半分都没有。到时候问责，还是你我的事。</p>
+      <p>他把一叠催缴公文推到沈默面前。</p>
+      <p class="dialog">回去，照章办事。别自作聪明。</p>
+
+      <p>沈默捧着公文出来，雨打在脸上，凉得刺骨。</p>
+
+      <div class="choices">
+        <div class="choice-label">【接下来怎么办？】</div>
+        <button class="choice-btn" onclick="goTo('node1-2')">1. 认了，回房按原册造下发</button>
+        <button class="choice-btn" onclick="goTo('node2-2')">2. 自己写灾情禀帖，越级送府衙</button>
+        <button class="choice-btn" onclick="goTo('node3-2')">3. 私下找张乡绅，想办法先稳住灾民</button>
+      </div>
+    </div>
+
+    <div id="node3-1" class="node">
+      <h2>第一层 · 暗核缓办</h2>
+      <div class="scene">场景：户房。夜雨。</div>
+
+      <p>沈默没有立刻发税单。</p>
+      <p>他锁上房门，翻开鱼鳞总图，对着乡里报上来的水情，一户一户圈画重灾稻田。低洼处的田，淹得最快；高坡的，也难保。算下来，全县近半稻田要绝收，税粮的窟窿，根本填不上。</p>
+
+      <p>他心里清楚，这笔账，按现在的税额，百姓肯定缴不上。硬催，只能逼得百姓卖田、逃荒。</p>
+      <p>可朝廷的定额在那里，短了，便是他的罪责。</p>
+
+      <p>烛火烧到灯芯，噼啪一声响。</p>
+      <p>外面传来脚步声，同僚压低声音。</p>
+      <p class="dialog">沈书办，王典史问你，税单怎么还没发？</p>
+
+      <div class="choices">
+        <div class="choice-label">【接下来怎么办？】</div>
+        <button class="choice-btn" onclick="goTo('node1-2')">1. 不敢再拖，原样发下去</button>
+        <button class="choice-btn" onclick="goTo('node2-2')">2. 改一改灾田税额，再发</button>
+        <button class="choice-btn" onclick="goTo('node3-2')">3. 带着账册去找张乡绅</button>
+      </div>
+    </div>
+
+    <!-- 第三层 -->
+    <div id="node1-2" class="node">
+      <h2>第二层 · 税令如山</h2>
+      <div class="scene">场景：县衙外。次日清晨。</div>
+
+      <p>大堤还是溃了。</p>
+      <p>天刚蒙蒙亮，消息传遍全城。北段大堤塌了两丈宽的口子，江水倒灌，下游村落尽数泡在水里。稻田、茅屋、柴垛，全成了黄汤里的漂萍。</p>
+
+      <p>百姓拖家带口往城里涌，裤脚全是泥，脸上木呆呆的。老周也在人群里，怀里抱着半袋从水里捞出来的湿谷种。</p>
+      <p>他看见沈默从衙门口出来，上前两步，嘴唇动了动，没说出话，最后深深鞠了一躬。</p>
+
+      <p>税单已经贴在城门口了，字字清晰。</p>
+      <p>人群里渐渐起了怨言。有人骂天，有人骂官，有人蹲在墙根哭。</p>
+
+      <p>路过粮铺，沈默抬头看了一眼木牌——粮价比昨日涨了两成。</p>
+      <p>铺掌柜拨着算盘，头也不抬。</p>
+      <p class="dialog">沈书办，别看了，明日还得涨。这水一退，地里颗粒无收，有粮的人家，谁舍得卖？</p>
+
+      <div class="choices">
+        <div class="choice-label">【接下来怎么办？】</div>
+        <button class="choice-btn" onclick="goTo('node1-3')">1. 硬着头皮继续催，先顾官账</button>
+        <button class="choice-btn" onclick="goTo('node2-3')">2. 偷偷核减部分重灾户税粮</button>
+        <button class="choice-btn" onclick="goTo('node3-3')">3. 请张乡绅出面设粥棚放粮</button>
+      </div>
+    </div>
+
+    <div id="node2-2" class="node">
+      <h2>第二层 · 暗改尾数</h2>
+      <div class="scene">场景：户房。灾后三日。</div>
+
+      <p>沈默改得很小心。</p>
+      <p>只改重灾村的税粮尾数，只调低灾田的科则，账面上粗看平平整整，看不出大破绽。他算过，改了这几十户，他们就能保住口粮，不用卖地。</p>
+
+      <p>新税单发下去，西乡重灾的村子，先松了口气。</p>
+      <p>老周特意送了一篮菜过来，千恩万谢，说全家都能活命了。</p>
+      <p>沈默心里踏实了些。</p>
+
+      <p>可没过几日，东乡的几个农户闹到县衙来。</p>
+      <p>为首的是个小地主，脸涨得通红，拍着户房的桌子喊。</p>
+      <p class="dialog">凭什么西乡的税就少，我们东乡的就多？同是一县的百姓，同是种稻田，凭什么两样对待！</p>
+
+      <p>沈默指尖猛地一紧。</p>
+      <p>他当初只想着给最穷的人免，却忘了——总额是死的。这边免了，那边就得补上。</p>
+
+      <div class="choices">
+        <div class="choice-label">【接下来怎么办？】</div>
+        <button class="choice-btn" onclick="goTo('node1-3')">1. 硬扛，就说册籍没错</button>
+        <button class="choice-btn" onclick="goTo('node2-3')">2. 把东乡的也减一减，再想办法平账</button>
+        <button class="choice-btn" onclick="goTo('node3-3')">3. 请张乡绅借粮补缺口</button>
+      </div>
+    </div>
+
+    <div id="node3-2" class="node">
+      <h2>第二层 · 借粮平事</h2>
+      <div class="scene">场景：张乡绅私宅。雨后。</div>
+
+      <p>张乡绅正在书房里喝茶，案头摆着几张田契。见他进来，笑着起身。</p>
+      <p class="dialog">沈书办肯赏脸，老夫蓬荜生辉。坐，看茶。</p>
+      <p>书房里很暖和，熏着檀香，和外面的风雨凄凄，像两个世界。</p>
+
+      <p>沈默也不绕弯子，直说灾情、百姓缺粮、税难收，想请员外开仓放些粮，先稳住灾民。</p>
+      <p>张乡绅端着茶盏，慢慢抿了一口。</p>
+      <p class="dialog">哦？那老夫有什么好处？</p>
+
+      <p>沈默道。</p>
+      <p class="dialog">账目上，我会替员外理顺。赈灾的粮，可以抵扣历年积欠的税粮。灾田过割、地契过户，我也会从速办理。</p>
+
+      <p>张乡绅笑了，放下茶盏。</p>
+      <p class="dialog">沈书办是个聪明人。好说。乡里乡亲的，老夫也不忍心看百姓饿死。粮食，明天就开仓放。</p>
+      <p>他顿了顿，又补充道。</p>
+      <p class="dialog">只是有一样——灾年百姓借粮，都是要立契的。按规矩来，书办你别插手。还不上，便以田抵。</p>
+
+      <p>沈默看着他，指尖轻轻敲了敲膝头。</p>
+      <p>窗外的雨，好像小了些。</p>
+
+      <div class="choices">
+        <div class="choice-label">【接下来怎么办？】</div>
+        <button class="choice-btn" onclick="goTo('node3-3')">1. 答应，先放粮再说</button>
+        <button class="choice-btn" onclick="goTo('node2-3')">2. 不答应，回去另想办法</button>
+        <button class="choice-btn" onclick="goTo('node1-3')">3. 干脆把堤工账也拿出来，问问他知不知道内情</button>
+      </div>
+    </div>
+
+    <!-- 第四层 -->
+    <div id="node1-3" class="node">
+      <h2>第三层 · 严征到底</h2>
+      <div class="scene">场景：户房。灾后半月。</div>
+
+      <p>半个月里，粮价翻了三倍。</p>
+      <p>县衙里安安静静，没人提赈灾，没人问堤工，人人都盯着税粮的账。王典史催得紧，只说“府衙盯着呢，月底必须清账”。</p>
+
+      <p>沈默每天做账。税单一张张发出去，欠粮的名单一天天变长。</p>
+      <p>他翻出年初的堤工账册，一页一页对着看。石料的价钱、土方的数目、工食银的发放，处处都透着不对。领银的人，是王典史的远房外甥。</p>
+
+      <p>他拿着账册去找王典史。</p>
+      <p>王典史只扫了一眼，就把账册推回来，端起茶盏吹了吹浮沫。</p>
+      <p class="dialog">沈默，账是死的，人是活的。这些陈年老账，翻出来对谁都不好。眼下最要紧的，是把今年的税粮收齐。别的事，少管。</p>
+
+      <p>从签押房出来，太阳很好，晒得人发晕。</p>
+      <p>衙门口，老周把一张田契递给粮铺伙计，接过两斗米，扛在肩上，背驼得像张弓。</p>
+
+      <div class="choices">
+        <div class="choice-label">【最终抉择】</div>
+        <button class="choice-btn" onclick="goTo('endingA')">1. 不管了，按册收齐，交差了事</button>
+        <button class="choice-btn" onclick="goTo('endingB')">2. 拿着账册证据，越级告到府衙</button>
+        <button class="choice-btn" onclick="goTo('endingD')">3. 转头去找张乡绅，联手把这事抹平</button>
+      </div>
+    </div>
+
+    <div id="node2-3" class="node">
+      <h2>第三层 · 账内腾挪</h2>
+      <div class="scene">场景：户房。深夜。</div>
+
+      <p>沈默把全县的账翻了个遍。</p>
+      <p>灾田减、熟田补；这边挪、那边调。他想尽办法在账册里腾挪，想让每家都少担一点，又不让总额差太多。</p>
+
+      <p>可窟窿越来越大。</p>
+      <p>今天东乡闹，明天西乡怨；今天补了这边，明天漏了那边。</p>
+      <p>同僚劝他。</p>
+      <p class="dialog">沈书办，别费这个劲了。朝廷的定额，岂是你我能改的？再改下去，账乱了，你的前程也乱了。</p>
+
+      <p>沈默不听，还是改。</p>
+      <p>直到有一天，王典史突然查账，翻出了涂改的痕迹。</p>
+      <p>王典史把账册摔在他面前，脸色铁青。</p>
+      <p class="dialog">沈默！你好大的胆子！朝廷的税册，你也敢私改？</p>
+
+      <p>堂外站了很多百姓。</p>
+      <p>西乡的人来替他求情，东乡的人来讨公道。</p>
+      <p>吵吵嚷嚷，乱成一团。</p>
+
+      <div class="choices">
+        <div class="choice-label">【最终抉择】</div>
+        <button class="choice-btn" onclick="goTo('endingC')">1. 一人承担，认下私改官册之罪</button>
+        <button class="choice-btn" onclick="goTo('endingB')">2. 把堤工贪腐的事抖出来，鱼死网破</button>
+        <button class="choice-btn" onclick="goTo('endingD')">3. 求张乡绅出面作保，补平税粮缺口</button>
+      </div>
+    </div>
+
+    <div id="node3-3" class="node">
+      <h2>第三层 · 绅办官督</h2>
+      <div class="scene">场景：县城东门外。十日后。</div>
+
+      <p>张乡绅果然开了仓。</p>
+      <p>东门外搭起了粥棚，一天两顿稀粥，灾民都能领上一口。城里也不乱了，逃荒的人少了，偷盗的也少了。</p>
+      <p>人人都说张乡绅是大善人，王典史也很高兴，说本县赈灾得力，府衙都夸了。</p>
+
+      <p>沈默每天都去粥棚看看。</p>
+      <p>直到有一天，他在粥棚门口，看见老周在一张纸上按手印。</p>
+      <p>他走过去问。</p>
+      <p class="dialog">老周，这是什么？</p>
+      <p>老周有些不好意思，挠了挠头。</p>
+      <p class="dialog">借粮的契。张员外说了，先借粮吃，等来年收成了，再还。要是还不上……就用田抵。</p>
+
+      <p>沈默心里一沉。</p>
+      <p>他拿过契书看了一眼。借一斗米，来年要还三斗。算下来，一亩田，刚好抵清借债。</p>
+
+      <p>他转身去找张乡绅。</p>
+      <p>张乡绅还是那副温厚的样子，笑着说。</p>
+      <p class="dialog">沈书办，这是民间的规矩。灾年放粮，哪有白给的道理？老夫也是要本钱的。百姓自愿借的，又不是我逼他们。总比饿死强，是不是？</p>
+
+      <p>沈默站在原地，风卷着粥香飘过来，却没半点暖意。</p>
+
+      <div class="choices">
+        <div class="choice-label">【最终抉择】</div>
+        <button class="choice-btn" onclick="goTo('endingD')">1. 睁一只眼闭一只眼，继续合作</button>
+        <button class="choice-btn" onclick="goTo('endingB')">2. 不准再放债，宁愿税收不上来</button>
+        <button class="choice-btn" onclick="goTo('endingC')">3. 暗中把账改一改，帮百姓减点利</button>
+      </div>
+    </div>
+
+    <!-- 结局 -->
+    <div id="endingA" class="node">
+      <div class="ending">
+        <div class="ending-title">结局一 · 局中旁观者</div>
+        <div class="scene">场景：户房。深夜。</div>
+
+        <p>夜深了。</p>
+        <p>沈默独自一人坐在灯下，面前摊着今年的税册、堤工账、田契底簿。</p>
+        <p>账是平的，粮是齐的，官面上挑不出半点错处。王典史也得了嘉奖，报上去的政绩，清清楚楚。</p>
+
+        <p>他拿起一张田契，又放下。窗外的月光照进来，落在纸上，白得发冷。</p>
+        <p>烛花爆了一下，屋里暗了暗。</p>
+        <p>沈默吹灭蜡烛，起身走到窗边。</p>
+        <p>月亮很圆，照得满地清霜。</p>
+
+        <p>他知道，这一场大水过后，大半良田都归了张乡绅。百姓没了地，来年便只能做张家的佃户。张乡绅拿这些田改种桑苗，利润更胜稻田数倍。</p>
+        <p>可他什么都没做错。他只是按章办事，按册征税，守了自己的本分。</p>
+
+        <p>远处传来几声犬吠。</p>
+        <p>他站了很久，衣裳浸了夜凉。</p>
+
+        <p class="ending-note">对应原图：A 严格执行 · 短期稳定，长期土地集中加速，百姓负担上升</p>
+      </div>
+      <div class="back-btn">
+        <button onclick="goTo('node0')">返回开篇，重走一局</button>
+      </div>
+    </div>
+
+    <div id="endingB" class="node">
+      <div class="ending">
+        <div class="ending-title">结局二 · 失衡担责者</div>
+        <div class="scene">场景：县衙大堂。秋日。</div>
+
+        <p>府衙的公文下来了。</p>
+        <p>堤工贪腐的事，终究是压不住了。</p>
+        <p>朝廷震怒，下令彻查。王典史被革职查办，相关人等一一追责。</p>
+        <p>私改税册的事，也一并被翻了出来。</p>
+
+        <p>沈默跪在堂下，很平静。</p>
+        <p>他说了灾情，说了百姓，说了堤工的猫腻。</p>
+        <p>上面的官员听着，末了只问一句。</p>
+        <p class="dialog">所以你就私改官册，扰乱税政？</p>
+
+        <p>最终处置：堤工贪腐官员各有定罪，税粮照旧追缴；沈默妄改册籍，革职为民，永不叙用。</p>
+        <p>百姓的税，还是一分没减。</p>
+        <p>土地兼并的势头，也没停下来。</p>
+
+        <p class="ending-note">对应原图：B 部分调整 · 救一部分人，激起另一部分人不满，可能被举报</p>
+      </div>
+      <div class="back-btn">
+        <button onclick="goTo('node0')">返回开篇，重走一局</button>
+      </div>
+    </div>
+
+    <div id="endingC" class="node">
+      <div class="ending">
+        <div class="ending-title">结局三 · 独行救人者</div>
+        <div class="scene">场景：县衙外。黄昏。</div>
+
+        <p>最终的判罚，是革去吏职，永不录用。</p>
+        <p>念在并无贪墨，免了牢狱之苦。</p>
+
+        <p>离开县衙那天，来了很多人。</p>
+        <p>西乡的百姓来送他，眼里含着泪。</p>
+        <p>东乡的百姓也来了，站在远处，没说话，也没上前。</p>
+
+        <p>老周送他到城门口，塞给他一小袋米。</p>
+        <p class="dialog">沈书办，以后……打算去哪？</p>
+        <p>沈默摇了摇头。</p>
+
+        <p>他背着包袱，慢慢走远了。</p>
+        <p>夕阳把他的影子拉得很长，投在坑坑洼洼的路上。</p>
+        <p>没人知道，他笔下改动的几分尾数、几厘税则，救了多少人家的性命。</p>
+
+        <p class="ending-note">对应原图：C 利用漏洞 · 短期受益，后续被清退追责，个人承担风险</p>
+      </div>
+      <div class="back-btn">
+        <button onclick="goTo('node0')">返回开篇，重走一局</button>
+      </div>
+    </div>
+
+    <div id="endingD" class="node">
+      <div class="ending">
+        <div class="ending-title">结局四 · 棋局入局者</div>
+        <div class="scene">场景：街上。年关，雪夜。</div>
+
+        <p>年关的时候，县衙的账完美收束。</p>
+        <p>税粮足额，流民安定，政绩考评优等。</p>
+        <p>王典史升了官，临走前拍着沈默的肩膀，说他会办事，前途无量。</p>
+
+        <p>除夕那天，张乡绅请他吃酒。</p>
+        <p>席上，张乡绅笑着说。</p>
+        <p class="dialog">沈书办，以后咱们还要多多合作。有你在，这县里的田、粮、桑，就好办。来年我把那些田都改种桑苗，利润更厚，咱们都好。</p>
+        <p>沈默端着酒杯，酒凉了，他没碰。</p>
+
+        <p>他知道，这一场大水，全县七八成的良田，都归了张家。百姓成了佃户，粮行成了独市，桑田也会越来越多。</p>
+        <p>可他又能怎么样呢。至少，灾年没人饿死。至少，账是平的。至少，大家都还活着。</p>
+
+        <p>酒散了，走在街上。</p>
+        <p>家家户户挂着灯笼，很热闹。</p>
+        <p>沈默踩着积雪，一步步往回走。</p>
+        <p>雪落在他的肩头，慢慢积了薄薄一层。</p>
+
+        <p>远处传来爆竹声，一下，又一下。</p>
+
+        <p class="ending-note">对应原图：D 联合乡绅 · 换取资源与保护，最终成为兼并链条的一环</p>
+      </div>
+      <div class="back-btn">
+        <button onclick="goTo('node0')">返回开篇，重走一局</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function enterStory() {
+    document.getElementById('prologue').style.display = 'none';
+    document.getElementById('mainContent').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function goTo(nodeId) {
+    document.querySelectorAll('.node').forEach(function(node) {
+      node.classList.remove('active');
+    });
+    document.getElementById(nodeId).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
