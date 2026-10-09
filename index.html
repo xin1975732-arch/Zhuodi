@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>浊堤</title>
+<meta name="description" content="《浊堤》：嘉靖四十年，浙西小县，户房书办沈默。中篇小说，二十章。">
+<meta property="og:title" content="浊堤">
+<meta property="og:description" content="雨一直在下，像要把这一年的账，都冲进江里。">
+<script>(function(){try{var d=document.documentElement,r=localStorage.getItem('zd.tone');if(r==='yang'||r==='ye')d.setAttribute('data-read',r);var f=localStorage.getItem('zd.fs');if(f)d.style.setProperty('--fs',f+'px');if(localStorage.getItem('zd.rain')==='off')d.setAttribute('data-rain','off');}catch(e){}})();</script>
+<meta name="theme-color" content="#DAEBD0">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/zd-serif-400.woff" as="font" type="font/woff" crossorigin>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="reader.css">
+</head>
+<body>
+<div class="page page-index" data-ch="0">
+<header class="bar">
+  <span class="bar-home"><span class="bar-mark">浊堤</span></span>
+  <div class="bar-mid" aria-hidden="true"></div>
+  <div class="bar-tools">
+    <button class="tool" id="snd" type="button" aria-pressed="false" aria-label="听雨：开窗外雨声"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5c2.2-3.6 5.4-5.5 9-5.5s6.8 1.9 9 5.5"/><path d="M12 5V3.5"/><path d="M6 14l-1 2.5M10 14l-1 2.5M14 14l-1 2.5M18 14l-1 2.5M8 18.5l-1 2.5M12 18.5l-1 2.5M16 18.5l-1 2.5"/></svg><span class="tool-l">听雨</span></button>
+    <button class="tool" id="aa" type="button" aria-expanded="false" aria-controls="panel" aria-label="阅读设置"><span class="aa">Aa</span></button>
+  </div>
+</header>
+<div class="panel" id="panel" role="dialog" aria-label="阅读设置" hidden>
+  <div>
+    <span class="set-label">护眼底色</span>
+    <div class="swatches">
+      <button class="sw" type="button" data-read="lv" aria-pressed="true"><i>字</i>浅绿</button>
+      <button class="sw" type="button" data-read="yang" aria-pressed="false"><i>字</i>黄羊皮</button>
+      <button class="sw" type="button" data-read="ye" aria-pressed="false"><i>字</i>夜灯</button>
+    </div>
+  </div>
+  <div>
+    <span class="set-label">字号</span>
+    <div class="stepper">
+      <button type="button" data-step="-1" aria-label="字小一号"><span class="s">A</span></button>
+      <output aria-live="polite">19 号</output>
+      <button type="button" data-step="1" aria-label="字大一号"><span class="l">A</span></button>
+    </div>
+  </div>
+  <div class="switch-row">
+    <span class="set-label">檐下落雨</span>
+    <button class="switch" id="rainSw" type="button" role="switch" aria-checked="true" aria-label="章首的落雨动画"></button>
+  </div>
+  <p class="panel-note">默认浅绿羊皮纸；想要暖黄些选“黄羊皮”，夜里读选“夜灯”。</p>
+</div>
+<section class="hero">
+  <canvas class="rain" data-density="2600" aria-hidden="true"></canvas>
+  <div class="hero-in">
+    <div class="book" role="img" aria-label="《浊堤》书封">
+      <div class="label"><span>浊堤</span></div>
+      <svg class="binding" viewBox="0 0 40 560" preserveAspectRatio="none" aria-hidden="true">
+  <line x1="0" y1="0" x2="0" y2="560" stroke="rgba(0,0,0,.35)" stroke-width="2"/>
+  <g stroke="var(--thread)" stroke-width="2.4" fill="none" opacity=".88">
+    <line x1="17" y1="0" x2="17" y2="560"/>
+    <line x1="17" y1="62" x2="40" y2="62"/><line x1="17" y1="207" x2="40" y2="207"/>
+    <line x1="17" y1="353" x2="40" y2="353"/><line x1="17" y1="498" x2="40" y2="498"/>
+    <line x1="17" y1="10" x2="40" y2="10"/><line x1="17" y1="550" x2="40" y2="550"/>
+  </g>
+  <g fill="rgba(0,0,0,.55)"><circle cx="17" cy="62" r="2.6"/><circle cx="17" cy="207" r="2.6"/><circle cx="17" cy="353" r="2.6"/><circle cx="17" cy="498" r="2.6"/></g>
+</svg>
+    </div>
+    <p class="tagline">雨一直在下，像要把这一年的账，<br>都冲进江里。</p>
+    <p class="series">账本三部曲 · 第一部</p>
+    <div class="cta">
+      <a class="btn btn-primary" id="go" href="ch01.html">开始阅读</a>
+      <a class="btn btn-ghost" id="again" href="ch01.html" hidden>从头读起</a>
+      <a class="btn btn-ghost" href="#mulu">目录</a>
+    </div>
+  </div>
+</section>
+<section class="mulu" id="mulu" aria-labelledby="mulu-h">
+  <h2 id="mulu-h">目录</h2>
+  <ol class="toc">
+<li><a href="ch01.html" data-n="1" aria-label="第一章 雨账"><span class="toc-no">壹</span><span class="toc-t">雨账</span><span><span class="toc-tag" hidden>读到这里</span></span><span class="toc-m">7 分钟</span></a></li>
+<li><a href="ch02.html" data-n="2" aria-label="第二章 堤脚"><span class="toc-no">贰</span><span class="toc-t">堤脚</span><span><span class="toc-tag" hidden>读到这里</span></span><span class="toc-m">4 分钟</span></a></li>
+<li><a href="ch03.html" data-n="3" aria-label="第三章 旧册"><span class="toc-no">叁</span><span class="toc-t">旧册</span><span><span class="toc-tag" hidden>读到这里</span></span><span class="toc-m">5 分钟</span></a></li>
+<li><a href="ch04.html" data-n="4" aria-label="第四章 夜汛"><span class="toc-no">肆</span><span class="toc-t">夜汛</span><span><span class="toc-tag" hidden>读到这里</span></span><span class="toc-m">6 分钟</span></a></li>
+<li><a href="ch05.html" data-n="5" aria-label="第五章 水过"><span class="toc-no">伍</span><span class="toc-t">水过</span><span><span class="toc-tag" hidden>读到这里</span></span><span class="toc-m">6 分钟</span></a></li>
+<li><a href="ch06.html" data-n="6" aria-label="第六章 漏名"><span class="toc-no">陆</span><span class="toc-t">漏名</span><span><span class="toc-tag" hidden>读到这里</span></span><span class="toc-m">5 分钟</span></a></li>
+<li><a href="ch07.html" data-n="7" aria-label="第七章 土地庙"><span class="toc-no">柒</span><span class="toc-t">土地庙</span><span><span class="toc-tag" hidden>读到这里</span></span><span class="toc-m">3 分钟</span></a></li>
+<li><a href="ch08.html" data-n="8" aria-label="第八章 一碗粥"><span class="toc-no">捌</span><span class="toc-t">一碗粥</span><span><span class="toc-tag" hidden>读到这里</span></span><span class="toc-m">4 分钟</span></a></li>
+<li><a href="ch09.html" data-n="9" aria-label="第九章 旧同年"><span class="toc-no">玖</span><span class="toc-t">旧同年</span><span><span class="toc-tag" hidden>读到这里</span></span><span class="toc-m">3 分钟</span></a></li>
+<li><a href="ch10.html" data-n="10" aria-label="第十章 撤夫令"><span class="toc-no">拾</span><span class="toc-t">撤夫令</span><span><span class="toc-tag" hidden>读到这里</span></span><span class="toc-m">4 分钟</span></a></li>
+<li><a href="ch11.html" data-n="11" aria-label="第十一章 纸上人"><span class="toc-no">拾壹</span><span class="toc-t">纸上人</span><span><span class="toc-tag" hidden>读到这里</span></span><span class="toc-m">3 分钟</span></a></li>
+<li><a href="ch12.html" data-n="12" aria-label="第十二章 旧笔"><span class="toc-no">拾贰</span><span class="toc-t">旧笔</span><span><span class="toc-tag" hidden>读到这里</span></span><span class="toc-m">2 分钟</span></a></li>
+<li><a href="ch13.html" data-n="13" aria-label="第十三章 回头"><span class="toc-no">拾叁</span><span class="toc-t">回头</span><span><span class="toc-tag" hidden>读到这里</span></span><span class="toc-m">3 分钟</span></a></li>
+<li><a href="ch14.html" data-n="14" aria-label="第十四章 赈粮"><span class="toc-no">拾肆</span><span class="toc-t">赈粮</span><span><span class="toc-tag" hidden>读到这里</span></span><span class="toc-m">4 分钟</span></a></li>
+<li><a href="ch15.html" data-n="15" aria-label="第十五章 封柜"><span class="toc-no">拾伍</span><span class="toc-t">封柜</span><span><span class="toc-tag" hidden>读到这里</span></span><span class="toc-m">4 分钟</span></a></li>
+<li><a href="ch16.html" data-n="16" aria-label="第十六章 钥匙"><span class="toc-no">拾陆</span><span class="toc-t">钥匙</span><span><span class="toc-tag" hidden>读到这里</span></span><span class="toc-m">4 分钟</span></a></li>
+<li><a href="ch17.html" data-n="17" aria-label="第十七章 寄出"><span class="toc-no">拾柒</span><span class="toc-t">寄出</span><span><span class="toc-tag" hidden>读到这里</span></span><span class="toc-m">5 分钟</span></a></li>
+<li><a href="ch18.html" data-n="18" aria-label="第十八章 等"><span class="toc-no">拾捌</span><span class="toc-t">等</span><span><span class="toc-tag" hidden>读到这里</span></span><span class="toc-m">3 分钟</span></a></li>
+<li><a href="ch19.html" data-n="19" aria-label="第十九章 批回"><span class="toc-no">拾玖</span><span class="toc-t">批回</span><span><span class="toc-tag" hidden>读到这里</span></span><span class="toc-m">4 分钟</span></a></li>
+<li><a href="ch20.html" data-n="20" aria-label="第二十章 照例"><span class="toc-no">贰拾</span><span class="toc-t">照例</span><span><span class="toc-tag" hidden>读到这里</span></span><span class="toc-m">4 分钟</span></a></li>
+  </ol>
+  <p class="mulu-note">全书二十章，约三万一千字。右上角“Aa”换底色、调字号；“听雨”开窗外雨声。<br>读到哪里，这台设备会替你记着。</p>
+</section>
+<footer class="foot">浊堤　·　嘉靖四十年　·　浙西</footer>
+</div>
+<script src="reader.js"></script>
+
+</body>
+</html>
