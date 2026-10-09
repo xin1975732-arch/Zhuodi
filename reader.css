@@ -547,6 +547,26 @@ canvas.rain {
   color: var(--ink-2);
   text-wrap: balance;
 }
+.epi {
+  margin: 4px 0 0;
+  display: grid;
+  gap: 6px;
+}
+.epi blockquote {
+  margin: 0;
+  font-family: var(--kai);
+  font-size: clamp(16px, 4.3vw, 19px);
+  line-height: 1.9;
+  letter-spacing: .14em;
+  color: var(--ink-2);
+  text-wrap: balance;
+}
+.epi figcaption {
+  justify-self: end;
+  font-size: 13px;
+  letter-spacing: .2em;
+  color: var(--ink-3);
+}
 .series {
   margin: -12px 0 0;
   font-size: 12px;
